@@ -247,7 +247,7 @@
 
       {#each Array(rows) as _, idx}
         {#each Array(cols) as _, jdx (rawDaysToDisplay[`${idx * 7 + jdx}`].format("DDMMYY"))}
-          {#if idx === 0 && parseInt(daysToDisplay[`${idx * 7 + jdx}`]) > 7}
+          {#if idx === 0 && parseInt(daysToDisplay[`${idx * 7 + jdx}`]) > 8}
             <!-- dates that DONT belong -->
             <MonthBlock
               isThisMonth={false}
@@ -258,11 +258,10 @@
               {events}
               on:message={toggleModal}
               appMonth={month}
-              {monthNumber}
               {year}
               bind:modalDate={modalDate}
             />
-          {:else if idx >= 4 && parseInt(daysToDisplay[`${idx * 7 + jdx}`]) < 7}
+          {:else if idx >= 4 && parseInt(daysToDisplay[`${idx * 7 + jdx}`]) < 8}
             <!-- dates that DONT belong -->
             <MonthBlock
               isThisMonth={false}
@@ -273,7 +272,6 @@
               {events}
               on:message={toggleModal}
               appMonth={month}
-              {monthNumber}
               {year}
               bind:modalDate={modalDate}
             />
@@ -286,7 +284,6 @@
               rawDates={rawDaysToDisplay}
               {events}
               appMonth={month}
-              {monthNumber}
               {year}
               bind:modalDate={modalDate}
               on:message={toggleModal}

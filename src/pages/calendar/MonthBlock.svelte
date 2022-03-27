@@ -7,7 +7,6 @@
   import { createEventDispatcher } from "svelte";
   export let dates;
   export let rawDates;
-  export let monthNumber;
   export let appMonth;
   export let year;
   export let events;
@@ -27,7 +26,9 @@
 
   const date = dates[`${idx * 7 + jdx}`];
   export let isThisMonth = true;
+
   let color = "black";
+  // grey out dates that are not in the current month
   if (!isThisMonth) {
     color = "grey";
   }
@@ -39,13 +40,11 @@
   }
   function handleDndFinalize(e) {
     items = e.detail.items;
-
     // update date
   }
 
   $: thisMonthsEvents = events.filter((event) => {
     return dayjs(event.event_start).format("MMMM") === appMonth;
-    console.log(thisMonthsEvents);
   });
   $: items = thisMonthsEvents;
 </script>
@@ -58,7 +57,7 @@
     on:finalize={handleDndFinalize}
   >
     {#each items as event (event.id)}
-      <Event {year} {monthNumber} {date} {event} />
+      <Event {year} {date} {rawDate} {event} />
     {/each}
   </section>
 </div>

@@ -68,12 +68,13 @@
   let eventEnd = dayjs(event.event_end).format("YYYY-MM-DDThh:mm");
   let eventTime = dayjs(event.event_start).format("hh:mma");
 
+  export let rawDate;
   export let date;
   export let time = eventTime;
   export let year;
-  export let monthNumber;
+  let monthNumber = rawDate.format("MM");
   export let allDay = 0;
-
+  
   // TESTING PURPOSES ONLY
   // console.log(name, {
   //   "Standard: ": [monthNumber, date, year, time],
